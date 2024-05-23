@@ -3,6 +3,17 @@ const app = new express();
 
 let loginDetails = [];
 
+const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+app.get("/fetchMonth/:num",(req,res)=>{
+    let num = parseInt(req.params.num);
+    if(num <1 || num >12) {
+        res.send("Not a valid month number")
+    } else {
+        res.send(months[num-1])
+    }
+})
+
 app.get("/",(req,res)=>{
     res.send("Welcome to the express server")
 })
@@ -23,4 +34,3 @@ app.get("/:name",(req,res)=>{
 app.listen(3333, () => {
     console.log(`Listening at http://localhost:3333`)
 })
-
